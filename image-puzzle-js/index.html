@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Image Puzzle</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/themify-icons.css" />
+    <link rel="stylesheet" href="../css/nice-select.css" />
+    <link rel="stylesheet" href="../css/flaticon.css" />
+    <link rel="stylesheet" href="../css/gijgo.css" />
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/slicknav.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/search.css" />
+    <link rel="stylesheet" href="../css/my-custom.css" />
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/image-puzzle.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-area">
+        <div id="sticky-header" class="main-header-area">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-xl-3 col-lg-3">
+                <div class="logo-img">
+                  <a href="../index.html">
+                    <span
+                      style="
+                        width: 83px;
+                        height: 83px;
+                        display: inline-block;
+                        background: url('../img/logo.png') no-repeat;
+                        background-size: cover;
+                      "
+                    ></span>
+                    <!-- <img src="../img/logo.png" alt="" /> -->
+                  </a>
+                </div>
+              </div>
+              <div class="col-xl-9 col-lg-9">
+                <div class="menu_wrap d-none d-lg-block">
+                  <div class="menu_wrap_inner d-flex align-items-center justify-content-end">
+                    <div class="main-menu">
+                      <nav>
+                        <ul id="navigation">
+                          <li><a class="active" href="../index.html">home</a></li>
+                          <li><a href="../findKindergarten.html">find kindergarten</a></li>
+                          <li><a href="../infomation&policy.html">information & policy</a></li>
+                          <li>
+                            <a>learn & play <i class="ti-angle-down"></i></a>
+                            <ul>
+                              <li>
+                                <a href="../learn&play.html">Learn</a>
+                              </li>
+                              <li>
+                                <a href="../play.html">Play</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a href="../aboutUs.html">about us</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                    <!-- <div class="book_room">
+                                        <div class="book_btn">
+                                            <a class="popup-with-form" href="./#test-form">Appointment</a>
+                                        </div>
+                                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mobile_menu d-block d-lg-none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="bradcam_area breadcam_bg_6 overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 style="text-align: left">Puzzle</h3>
+            <p class="s-tips"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="collage">
+      <div id="playPanel" style="padding: 5px; display: none">
+        <!-- <h3 id="imgTitle"></h3> -->
+        <!-- <hr /> -->
+        <div style="display: inline-block; margin: auto; width: 95%; vertical-align: top">
+          <ul id="sortable" class="sortable"></ul>
+          <div id="actualImageBox">
+            <div id="stepBox">
+              <div>Steps:</div>
+              <div id="stepCount" class="stepCount">0</div>
+            </div>
+            <div id="timeBox">Time Taken: <span id="timerPanel"></span> secs</div>
+            <img id="actualImage" />
+            <div style="text-align: center;margin-top: 10px;">Re-arrange to create a picture like this.</div>
+            <br/>
+            <div id="levelPanel" style="text-align: center;">
+              <input
+                type="radio"
+                name="level"
+                id="easy"
+                checked="checked"
+                value="3"
+                onchange="imagePuzzle.startGame(images,
+                                this.value);"
+              />
+              <label for="easy">Easy</label>
+              <input
+                type="radio"
+                name="level"
+                id="medium"
+                value="4"
+                onchange="imagePuzzle.startGame(images,
+                                this.value);"
+              />
+              <label for="medium">Medium</label>
+              <input
+                type="radio"
+                name="level"
+                id="hard"
+                value="5"
+                onchange="imagePuzzle.startGame(images,
+                                this.value);"
+              />
+              <label for="hard">Hard</label>
+            </div>
+            <div style="text-align: center;">
+              <!-- <button id="btnRule" type="button" class="btn" onclick="rules();">Rules</button> -->
+              <button type="button" class="s-button" onclick="restart();" style="width: 180px;margin: 0px 0 10px;">Another Photo</button>
+              <!-- <button id="btnReplay" type="button" class="btn"
+                                onclick="about();">About</button> -->
+            </div>
+            <br/>
+            <div style="padding: 12px 10px 6px;border: 2px dashed rgb(189, 189, 189);border-radius: 10px;background: rgba(255,255,255,.5);">
+              <h4 style="text-align: center;">Rules</h4>
+              <p>
+                Re arrange the image parts in a way that it correctly forms the picture. 
+                <br/>
+                The no. of steps taken will be counted.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="gameOver" style="display: none">
+        <div style="background-color: #fc9e9e; padding: 25px 10px 25px 10px; text-align: center">
+          <h3 style="text-align: center">Congratulations!!</h3>
+          <span style="font-size:20px">
+            You have completed this picture. <br />
+            Steps: <span id="stepCount" class="stepCount">0</span>
+            steps.
+            <br />
+            Time Taken: <span class="timeCount">0</span> seconds<br /><br />
+            <div>
+
+              <button type="button" class="s-button" onclick="window.location.reload(true);" style="width: 180px;margin: 0px 0 10px;">Play Again</button>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <script>
+        var images = [
+          { src: './images/london-bridge.jpg', title: 'London Bridge' },
+          { src: './images/lotus-temple1.jpg', title: 'Lotus Temple' },
+          { src: './images/qutub-minar.jpg', title: 'Qutub Minar' },
+          { src: './images/statue-of-liberty.jpg', title: 'Statue Of Liberty' },
+          { src: './images/taj-mahal.jpg', title: 'Taj Mahal' }
+        ]
+
+        window.onload = function () {
+          var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value')
+          imagePuzzle.startGame(images, gridSize)
+        }
+        function restart() {
+          var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value')
+          imagePuzzle.startGame(images, gridSize)
+        }
+        function rules() {
+          alert(
+            'Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.'
+          )
+        }
+        function about() {
+          alert('Developed by Anurag Gandhi. \nHe can be contacted at: soft.gandhi@gmail.com')
+        }
+      </script>
+    </div>
+    <!-- footer_start  -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-md-6 col-lg-5 ">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                              <a href="../index.html">
+                                <span
+                                  style="
+                                    width: 200px;
+                                    height: 200px;
+                                    display: inline-block;
+                                    background: url('../img/logo.png') no-repeat;
+                                    background-size: cover;
+                                  "
+                                ></span>
+                                <!-- <img src="../img/logo.png" alt="" /> -->
+                              </a>
+                            </div>
+                            <p class="address_text">SEEDFuture is committed to helping Australia's new immigrant parents complete the search for suitable kindergartens and pre-school preparations for their children by providing efficient search engines and abundant preschool education information.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Services
+                            </h3>
+                            <ul class="links">
+                                <li><a href="findKindergarten.html">Find Kindergarten</a></li>
+                                <li><a href="learn&play.html">Learn</a></li>
+                                <li><a href="play.html">Play</a></li>
+                                <li><a href="infomation&policy.html">information & policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Follow Us
+                            </h3>
+                            <ul class="links">
+                                <li><a href="https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=49498">Mahara</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copy-right_text">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                        <p>&copy; 2020 - SEEDFuture - Team MP5</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+        <!-- <div class="copy-right_text">
+            <div class="container" style="height: auto;">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">&copy; 2020 - SEEDFuture - Team MP5</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </footer>
+    <!-- footer_end  -->
+  </body>
+</html>

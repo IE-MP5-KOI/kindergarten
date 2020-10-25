@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Qurossword - A javascript crossword puzzle plugin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/themify-icons.css" />
+    <link rel="stylesheet" href="../css/nice-select.css" />
+    <link rel="stylesheet" href="../css/flaticon.css" />
+    <link rel="stylesheet" href="../css/gijgo.css" />
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/slicknav.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/search.css" />
+    <link rel="stylesheet" href="../css/my-custom.css" />
+    <script src="http://libs.baidu.com/jquery/1.6.2/jquery.min.js"></script>
+    <script src="js/jquery.crossword.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      
+    var easy = [
+      {
+        clue: '',
+        answer: 'blue',
+        position: 1,
+        orientation: 'across',
+        startx: 1,
+        starty: 2
+      },
+      {
+        clue: '1. What color is the ocean',
+        answer: 'blue',
+        position: 1,
+        orientation: 'across',
+        startx: 1,
+        starty: 2
+      },
+      {
+        clue: '2. Lipstick is this color',
+        answer: 'red',
+        position: 2,
+        orientation: 'down',
+        startx: 4,
+        starty: 1
+      }
+    ]
+
+    var medium = [
+      {
+        clue: '',
+        answer: 'potato',
+        position: 1,
+        orientation: 'across',
+        startx: 1,
+        starty: 1
+      },
+      {
+        clue: '1. These are a type of starchy food, mashed or fried they can be found. And they are grown underground.',
+        answer: 'potato',
+        position: 1,
+        orientation: 'across',
+        startx: 1,
+        starty: 1
+      },
+      {
+        clue: '2. Round, yellow, sweet, Her home is a garden bed',
+        answer: 'turnip',
+        position: 2,
+        orientation: 'down',
+        startx: 3,
+        starty: 1
+      },
+      {
+        clue: `3. I have many layers but I’m not someone wearing winter clothes
+        I can be red, white or yellow but I’m not a rose
+        I can be made into rings but I’m not gold
+        I can be peeled but I’m not a banana
+        I’m a bulb but I don’t shine
+        I can make you cry but I’m not a sad movie`,
+        answer: 'onion',
+        position: 3,
+        orientation: 'down',
+        startx: 6,
+        starty: 1
+      }
+    ]
+
+    var hard = [
+      {
+        clue: ``,
+        answer: 'elephant',
+        position: 1,
+        orientation: 'across',
+        startx: 1,
+        starty: 1
+      },
+      {
+        clue: `1. I’m gray but I’m not a cloud
+        I have a tail but I’m not a cat
+        I have big ears but I’m not a bunny
+        I’m tall but I don’t play basketball
+        I’m jumbo but I’m not a jet
+        I have a trunk but I’m not a car`,
+        answer: 'elephant',
+        position: 1,
+        orientation: 'across',
+        startx: 1,
+        starty: 1
+      },
+      {
+        clue: `4. What has four legs, breathes, but doesn't move`,
+        answer: 'koala',
+        position: 4,
+        orientation: 'across',
+        startx: 2,
+        starty: 5
+      },
+      {
+        clue: `6. Swinging through the jungle’s trees is something at which I’m great. I like to eat bananas and I’m a type of primate`,
+        answer: 'monkey',
+        position: 6,
+        orientation: 'across',
+        startx: 2,
+        starty: 7
+      },
+
+      {
+        clue: `2. Black eye, black ears, black fleece, white vest`,
+        answer: 'panda',
+        position: 2,
+        orientation: 'down',
+        startx: 4,
+        starty: 1
+      },
+      {
+        clue: `3. Armored but not a knight, snapping but not a twig, and always at home, even on the move`,
+        answer: 'turtle',
+        position: 3,
+        orientation: 'down',
+        startx: 8,
+        starty: 1
+      },
+      {
+        clue: `5. I can sizzle like bacon, I am made with an egg, I have plenty of backbone, but lack a good leg, I peel layers like onions, but still remain whole, I can be long, like a flagpole, yet fit in a hole`,
+        answer: 'snake',
+        position: 5,
+        orientation: 'down',
+        startx: 6,
+        starty: 3
+      },
+      {
+        clue: `7. The second-largest living bird by height in the world`,
+        answer: 'emu',
+        position: 7,
+        orientation: 'down',
+        startx: 2,
+        starty: 6
+      }
+    ]
+    </script>
+    <style type="text/css" media="screen">
+      /*
+		Default puzzle styling
+	*/
+      /* body {
+		font: 62.5%/1.3em Helvetica, sans-serif;
+		width: 90.3%;
+		margin: 10px auto;
+	} */
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        max-width: 100%;
+      }
+      table tr {
+        width: 100%;
+      }
+      table td {
+        width: 5em;
+        height: 5em;
+        border: 1px solid #cdcdcd;
+        padding: 0;
+        margin: 0;
+        background-color: #333;
+        position: relative;
+      }
+
+      td input {
+        width: 100%;
+        height: 100%;
+        padding: 0em;
+        border: none;
+        text-align: center;
+        font-size: 3em;
+        color: #666;
+        background-color: #f4f4f4;
+      }
+
+      td input:focus {
+        background-color: #fff;
+      }
+
+      td span {
+        color: #444;
+        font-size: 0.8em;
+        position: absolute;
+        top: -1px;
+        left: 1px;
+      }
+
+      input.done {
+        font-weight: bold;
+        color: green;
+      }
+
+      .active,
+      .clues-active {
+        background-color: #ddd;
+      }
+      .clue-done {
+        color: #999;
+        text-decoration: line-through;
+      }
+
+      #puzzle-wrapper,
+      #puzzle-wrapper1,
+      #puzzle-wrapper2 {
+        float: left;
+        width: 54%;
+        margin-right: 3%;
+      }
+      #puzzle-wrapper > table,
+      #puzzle-wrapper1 > table,
+      #puzzle-wrapper2 > table {
+        margin: 0 auto;
+      }
+      #puzzle-clues {
+        float: left;
+        width: 40%;
+      }
+
+      #puzzle-clues li {
+        font-size: 1.2em;
+        margin: 0.3em;
+        line-height: 1.6em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-area">
+        <div id="sticky-header" class="main-header-area">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-xl-3 col-lg-3">
+                <div class="logo-img">
+                  <a href="../index.html">
+                    <img src="../img/logo.png" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="col-xl-9 col-lg-9">
+                <div class="menu_wrap d-none d-lg-block">
+                  <div class="menu_wrap_inner d-flex align-items-center justify-content-end">
+                    <div class="main-menu">
+                      <nav>
+                        <ul id="navigation">
+                          <li><a class="active" href="../index.html">home</a></li>
+                          <li><a href="../findKindergarten.html">find kindergarten</a></li>
+                          <li><a href="../infomation&policy.html">information & policy</a></li>
+                          <li>
+                            <a>learn & play <i class="ti-angle-down"></i></a>
+                            <ul>
+                              <li>
+                                <a href="../learn&play.html">Learn</a>
+                              </li>
+                              <li>
+                                <a href="../play.html">Play</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a href="../aboutUs.html">about us</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                    <!-- <div class="book_room">
+                                            <div class="book_btn">
+                                                <a class="popup-with-form" href="./#test-form">Appointment</a>
+                                            </div>
+                                        </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mobile_menu d-block d-lg-none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="bradcam_area breadcam_bg_5 overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3>Crossword</h3>
+            <p class="s-tips"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: right; padding: 20px 120px 0 0">
+      <span id="levelPanel">
+        <input
+          type="radio"
+          name="level"
+          id="easy"
+          checked="checked"
+          value="3"
+          onchange="
+          // console.log('easy');
+          // console.log($('.puzzle-clues'))
+          // console.log($('.puzzle'));
+          $('#puzzle-wrapper').remove()
+          $('#qwe').append($(`<div id='puzzle-wrapper'></div>`))
+          $('#puzzle-clues').remove()
+          $('#puzzle-wrapper').crossword(JSON.parse(JSON.stringify(easy)))
+          ;"
+        />
+        <label for="easy">Easy</label>
+        &nbsp;
+        <input
+          type="radio"
+          name="level"
+          id="medium"
+          value="4"
+          onchange="
+          $('#puzzle-wrapper').remove()
+          $('#qwe').append($(`<div id='puzzle-wrapper'></div>`))
+          $('#puzzle-clues').remove()
+          $('#puzzle-wrapper').crossword(JSON.parse(JSON.stringify(medium)))
+         ;"
+        />
+        <label for="medium">Medium</label>
+        &nbsp;
+        <input
+          type="radio"
+          name="level"
+          id="hard"
+          value="5"
+          onchange="
+
+          $('#puzzle-wrapper').remove()
+          $('#qwe').append($(`<div id='puzzle-wrapper'></div>`))
+          $('#puzzle-clues').remove()
+          $('#puzzle-wrapper').crossword(JSON.parse(JSON.stringify(hard)))
+          ;"
+        />
+        <label for="hard">Hard</label>
+      </span>
+    </div>
+    <div id="qwe" style="width: 90.3%; font: 62.5%/1.3em Helvetica, sans-serif; margin: 0 auto 120px; display: table">
+      <div id="puzzle-wrapper"><!-- crossword puzzle appended here --></div>
+    </div>
+    <!-- footer_start  -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-md-6 col-lg-5 ">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <img src="img/logo.png" alt="">
+                                </a>
+                            </div>
+                            <p class="address_text">SEEDFuture is committed to helping Australia's new immigrant parents complete the search for suitable kindergartens and pre-school preparations for their children by providing efficient search engines and abundant preschool education information.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Services
+                            </h3>
+                            <ul class="links">
+                                <li><a href="findKindergarten.html">Find Kindergarten</a></li>
+                                <li><a href="learn&play.html">Learn</a></li>
+                                <li><a href="play.html">Play</a></li>
+                                <li><a href="infomation&policy.html">information & policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Follow Us
+                            </h3>
+                            <ul class="links">
+                                <li><a href="https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=49498">Mahara</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copy-right_text">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                        <p>&copy; 2020 - SEEDFuture - Team MP5</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+        <!-- <div class="copy-right_text">
+            <div class="container" style="height: auto;">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">&copy; 2020 - SEEDFuture - Team MP5</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </footer>
+    <!-- footer_end  -->
+  </body>
+</html>
